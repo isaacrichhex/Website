@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Team — Hexoris</title>
+  <meta name="description" content="Meet the Hexoris founding team — engineers and operators building the next generation of synthetic graphite production technology." />
+  <meta property="og:title"       content="Team — Hexoris" />
+  <meta property="og:description" content="Chemical engineering founders and world-class advisors building next-generation graphitization technology." />
+  <meta property="og:image"       content="https://hexoris.com/assets/images/og-team.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ── Team page specific ── */
+
+    /* Founders layout */
+    .founders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+    }
+
+    .team-card--lg .team-card__photo { aspect-ratio: 3/2.6; }
+
+    /* Advisor cards */
+    .advisor-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+    }
+
+    .advisor-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--s2);
+      transition: border-color var(--t), transform var(--tmd), box-shadow var(--tmd);
+    }
+
+    .advisor-card:hover {
+      border-color: var(--green-border);
+      transform: translateY(-4px);
+      box-shadow: var(--s4);
+    }
+
+    .advisor-card__photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .advisor-card:hover .advisor-card__photo { transform: scale(1.04); }
+
+    .advisor-card__body { padding: 1.5rem 1.75rem; }
+
+    .advisor-card__area {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.25rem;
+    }
+
+    .advisor-card__name {
+      font-size: 1.175rem;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .advisor-card p {
+      font-size: 0.9rem;
+      max-width: none;
+      color: var(--t2);
+      line-height: 1.72;
+    }
+
+    /* Values grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .value-item {
+      background: var(--bg-card);
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r);
+      padding: 2rem;
+      box-shadow: var(--s1);
+      transition: border-color var(--t), transform var(--tmd), box-shadow var(--tmd);
+    }
+    .value-item:hover {
+      border-color: var(--green-border);
+      transform: translateY(-3px);
+      box-shadow: var(--s3);
+    }
+
+    .value-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .value-item h4 { margin-bottom: 0.5rem; }
+    .value-item p  { font-size: 0.9rem; max-width: none; }
+
+    @media (max-width: 900px) {
+      .founders-grid  { grid-template-columns: 1fr; }
+      .support-grid   { grid-template-columns: 1fr; }
+      .advisor-grid   { grid-template-columns: 1fr; }
+      .values-grid    { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .values-grid    { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="Hexoris Home">
+      <img src="assets/images/logo-horizontal.svg" alt="Hexoris" width="160" height="28" />
+    </a>
+    <ul class="nav__links" id="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="contact.html" class="nav__cta">Contact Us</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <span class="label">The Team</span>
+    <h1 class="mt-2">Built by <span class="highlight">Engineering Students</span><br>Who Ship</h1>
+    <p class="mt-3">Hexoris was founded by chemical engineering students who have spent years in real industrial and research environments. We are operators first — we build things and test them.</p>
+  </div>
+</section>
+
+
+<!-- CO-FOUNDERS -->
+<section class="section--sm">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Co-Founders</span>
+      <h2>The People Driving Hexoris</h2>
+    </div>
+
+    <!-- Lance + Isaac -->
+    <div class="founders-grid fade-up d1">
+      <div class="team-card team-card--lg">
+        <img class="team-card__photo" src="assets/images/lance.jpg" alt="Lance Keddy, CEO" loading="lazy" />
+        <div class="team-card__body">
+          <div class="team-card__role">CEO · Co-Founder</div>
+          <div class="team-card__name">Lance Keddy</div>
+          <div class="team-card__bio">Lance leads program execution, integrating the technical roadmap with funding, partnerships, and business development. He supports reactor fabrication and installation.</div>
+          <div class="credentials">
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Planned and directed a $250K pilot-scale industrial project from concept through implementation.
+            </div>
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Backfilled as industrial production operations lead; managed daily operations, shop floor, and technical meetings.
+            </div>
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              B.Sc. Chemical Engineering, minor in Business (Finance/Accounting) — May 2026.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card team-card--lg">
+        <img class="team-card__photo" src="assets/images/isaac.jpg" alt="Isaac Richard, President &amp; CTO" loading="lazy" />
+        <div class="team-card__body">
+          <div class="team-card__role">President &amp; CTO · Co-Founder</div>
+          <div class="team-card__name">Isaac Richard</div>
+          <div class="team-card__bio">Isaac leads the technology vision and is accountable for reactor design and scale-up. He invented the Hexoris platform and personally runs experimental testing, operating-window definition, and supplier technical interfaces.</div>
+          <div class="credentials">
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Five years of R&amp;D in nanotechnology and plasma reactors across mechanical and chemical engineering.
+            </div>
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Inventor of the Hexoris graphitization platform; drives design reviews and experimental validation.
+            </div>
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              B.Sc. Chemical Engineering, minor in Mathematics — May 2026.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Josh + William -->
+    <div class="support-grid fade-up d2">
+      <div class="team-card">
+        <img class="team-card__photo" src="assets/images/josh.jpg" alt="Josh Pothier, Process Director" loading="lazy" />
+        <div class="team-card__body">
+          <div class="team-card__role">Process Director · Co-Founder</div>
+          <div class="team-card__name">Josh Pothier</div>
+          <div class="team-card__bio">Josh directs process and operations workstreams. He focuses on process controls, safe operation of test reactors, and designs and installs electronic monitoring and control systems.</div>
+          <div class="credentials">
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Industrial experience as mechatronic process technician — PLC logic, controls tuning, and electronic systems.
+            </div>
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              B.Sc. Chemical Engineering — May 2026.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img class="team-card__photo" src="assets/images/william.jpg" alt="William Wilcox, Environmental Compliance" loading="lazy" style="object-position:center 15%;" />
+        <div class="team-card__body">
+          <div class="team-card__role">Environmental Compliance · Co-Founder</div>
+          <div class="team-card__name">William Wilcox</div>
+          <div class="team-card__bio">William supports day-to-day operations, is responsible for environmental compliance and modelling, and leads primary market research for Hexoris.</div>
+          <div class="credentials">
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Experience with nuclear plant design teams, including radiation analysis and time-temperature aging analysis.
+            </div>
+            <div class="credential">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              B.Sc. Chemical Engineering — Fall 2026.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ADVISORS -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Advisors</span>
+      <h2>Experienced Advisors<br>Behind the Team</h2>
+      <p>Hexoris is backed by a group of experienced entrepreneurs, engineers, and commercialization specialists bringing decades of combined experience in deep technology, IP, and market development.</p>
+    </div>
+
+    <div class="advisor-grid">
+      <div class="advisor-card fade-up d1">
+        <img class="advisor-card__photo" src="assets/images/felipe.jpg" alt="Dr. Felipe Chibante" loading="lazy" />
+        <div class="advisor-card__body">
+          <div class="advisor-card__area">Technical</div>
+          <div class="advisor-card__name">Dr. Felipe Chibante</div>
+          <p>Serial entrepreneur with a track record spanning BuckyUSA, NanoTex, and NanoNB. Deep expertise in research-to-market execution, patent strategy, and projects with NASA, DND, and NATO.</p>
+        </div>
+      </div>
+
+      <div class="advisor-card fade-up d2">
+        <img class="advisor-card__photo" src="assets/images/george.jpg" alt="George Palikaras" loading="lazy" />
+        <div class="advisor-card__body">
+          <div class="advisor-card__area">Business Development</div>
+          <div class="advisor-card__name">George Palikaras</div>
+          <p>Serial deep-tech founder and recognized industry leader. Co-founded Meta Materials (NASDAQ: MMAT) and Metamaterial Technologies Inc. Named EY Canada "Emerging Entrepreneur of the Year."</p>
+        </div>
+      </div>
+
+      <div class="advisor-card fade-up d3">
+        <img class="advisor-card__photo" src="assets/images/david.jpg" alt="Dr. David Foord" loading="lazy" />
+        <div class="advisor-card__body">
+          <div class="advisor-card__area">Intellectual Property</div>
+          <div class="advisor-card__name">Dr. David Foord</div>
+          <p>Over 20 years of experience in IP strategy, contracts, and technology transfer. Former Director of IP at a major Canadian university. Co-founded Springboard Atlantic. Certified Licensing Professional.</p>
+        </div>
+      </div>
+
+      <div class="advisor-card fade-up d4">
+        <img class="advisor-card__photo" src="assets/images/dane.jpg" alt="Dane Shepard" loading="lazy" style="object-position:center 20%;" />
+        <div class="advisor-card__body">
+          <div class="advisor-card__area">Systems &amp; Technology</div>
+          <div class="advisor-card__name">Dane Shepard</div>
+          <p>CTO at The Black Arcs, leading product development and long-term technology strategy. Deep expertise in big-data systems and applied AI for complex industrial applications.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- VALUES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">What We Stand For</span>
+      <h2>How We Work</h2>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-item fade-up d1">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <span class="value-num">01</span>
+        <h4>Build First</h4>
+        <p>We test hypotheses with hardware, not spreadsheets. Our bench prototype was running before we pitched anyone.</p>
+      </div>
+
+      <div class="value-item fade-up d2">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <span class="value-num">02</span>
+        <h4>Third-Party Validation</h4>
+        <p>Our samples are at an independent battery materials lab undergoing rigorous third-party testing. We welcome external scrutiny.</p>
+      </div>
+
+      <div class="value-item fade-up d3">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <span class="value-num">03</span>
+        <h4>Long-Term Thinking</h4>
+        <p>We are building for generational impact — as a homegrown Atlantic Canadian company with global ambitions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="section--sm">
+  <div class="container">
+    <div class="cta-band fade-up">
+      <div class="cta-band__text">
+        <h2>Want to Work With Us?</h2>
+        <p class="mt-2">We're always interested in meeting talented engineers, operators, and collaborators who want to help build what comes next.</p>
+      </div>
+      <a href="contact.html" class="btn btn--white">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/images/logo-horizontal.svg" alt="Hexoris" width="140" height="26" />
+        <p>Developing the next generation of graphitization technology for the EV battery supply chain.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="technology.html">Technology</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:info@hexoris.com">info@hexoris.com</a></li>
+          <li><span>Fredericton, NB, Canada</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Hexoris Inc. All rights reserved.</p>
+      <p>Fredericton, New Brunswick, Canada</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

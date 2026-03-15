@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Technology — Hexoris</title>
+  <meta name="description" content="Hexoris's continuous electric arc graphitization platform — designed for significantly lower energy use, smaller footprint, and higher throughput." />
+  <meta property="og:title"       content="Technology — Hexoris" />
+  <meta property="og:description" content="Continuous electric arc graphitization platform targeting dramatically lower energy use for battery-grade synthetic graphite." />
+  <meta property="og:image"       content="https://hexoris.com/assets/images/og-tech.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ── Technology page specific ── */
+
+    /* Process flow bar */
+    .process-flow {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin: 2rem 0;
+      scrollbar-width: thin;
+    }
+
+    .flow-node {
+      flex: 1;
+      min-width: 130px;
+      padding: 1.1rem 1rem;
+      background: var(--bg-card);
+      text-align: center;
+      border-right: 1px solid var(--bd-lt);
+      position: relative;
+    }
+    .flow-node:last-child { border-right: none; }
+
+    .flow-node--active {
+      background: var(--green-light);
+      border-right-color: var(--green-border);
+    }
+
+    .flow-node__step {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 0.35rem;
+    }
+    .flow-node--active .flow-node__step { color: var(--green); }
+
+    .flow-node__name {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--t1);
+      line-height: 1.3;
+    }
+    .flow-node--active .flow-node__name { color: var(--green-dark); }
+
+    /* Energy comparison chart */
+    .energy-chart {
+      background: var(--bg-card);
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r);
+      padding: 2rem 2.25rem;
+      box-shadow: var(--s2);
+    }
+
+    .energy-chart__title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 1.75rem;
+    }
+
+    .energy-bar { margin-bottom: 1.5rem; }
+    .energy-bar:last-child { margin-bottom: 0; }
+
+    .energy-bar__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.6rem;
+    }
+
+    .energy-bar__label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--t1);
+    }
+
+    .energy-bar__value {
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+    .energy-bar__value--green { color: var(--green); }
+    .energy-bar__value--muted { color: var(--t3); }
+
+    .energy-bar__track {
+      height: 10px;
+      background: var(--bg-subtle);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .energy-bar__fill {
+      height: 100%;
+      border-radius: 100px;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+      width: 0;
+    }
+    .energy-bar__fill--green { background: var(--green); }
+    .energy-bar__fill--gray  { background: #c0c8c0; }
+
+    .energy-bar__fill.animated { width: var(--bar-w); }
+
+    .energy-note {
+      margin-top: 1.25rem;
+      font-size: 0.8125rem;
+      color: var(--t3);
+      font-style: italic;
+    }
+
+    /* Tech diagram */
+    .tech-diagram {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--bd-lt);
+      box-shadow: var(--s3);
+    }
+    .tech-diagram img { width: 100%; display: block; }
+    .tech-diagram__cap {
+      padding: 0.7rem 1rem;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--bd-lt);
+      font-size: 0.69rem;
+      font-weight: 600;
+      color: var(--t3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* VS comparison */
+    .vs-wrap {
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr;
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: var(--s2);
+    }
+
+    .vs-col {
+      padding: 2.5rem 2rem;
+      background: var(--bg-card);
+    }
+    .vs-col--hexoris { background: #f0faf3; }
+
+    .vs-divider {
+      background: var(--bg-subtle);
+      border-left: 1px solid var(--bd-lt);
+      border-right: 1px solid var(--bd-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--t3);
+    }
+
+    .vs-head {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .vs-col--hexoris .vs-head { color: var(--green); }
+    .vs-col--old     .vs-head { color: var(--t3); }
+
+    .vs-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    .vs-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.9rem;
+      color: var(--t2);
+      line-height: 1.6;
+    }
+    .vs-list li svg {
+      width: 15px; height: 15px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .vs-col--hexoris .vs-list li svg { stroke: var(--green); }
+    .vs-col--old     .vs-list li svg { stroke: var(--t3); }
+
+    /* Application cards */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.5rem;
+    }
+
+    .app-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r);
+      padding: 2rem;
+      box-shadow: var(--s1);
+      transition: border-color var(--t), transform var(--tmd), box-shadow var(--tmd);
+    }
+    .app-card:hover {
+      border-color: var(--green-border);
+      transform: translateY(-4px);
+      box-shadow: var(--s3);
+    }
+    .app-card h4 { margin: 1.25rem 0 0.65rem; }
+    .app-card p  { font-size: 0.9rem; max-width: none; }
+    .app-card .pill { margin-top: 1.25rem; }
+
+    /* IP band */
+    .ip-band {
+      background: var(--bg-subtle);
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r-lg);
+      padding: clamp(2rem,4vw,3rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .app-grid  { grid-template-columns: 1fr 1fr; }
+      .vs-wrap   { grid-template-columns: 1fr; }
+      .vs-divider { writing-mode: horizontal-tb; border: none; border-top: 1px solid var(--bd-lt); border-bottom: 1px solid var(--bd-lt); padding: 0.75rem; }
+      .ip-band   { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .app-grid  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="Hexoris Home">
+      <img src="assets/images/logo-horizontal.svg" alt="Hexoris" width="160" height="28" />
+    </a>
+    <ul class="nav__links" id="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="contact.html" class="nav__cta">Contact Us</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <span class="label">Technology</span>
+    <h1 class="mt-2">Continuous Graphitization,<br><span class="highlight">Reinvented</span></h1>
+    <p class="mt-3">Hexoris is developing a compact, continuous high-temperature reactor platform targeting substantially lower energy consumption compared to conventional batch graphitization — without compromising product quality.</p>
+  </div>
+</section>
+
+
+<!-- PROCESS CONTEXT -->
+<section class="section--sm">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Process Context</span>
+      <h2>Where Hexoris Operates</h2>
+      <p>Hexoris focuses exclusively on the graphitization step — the most energy-intensive stage in synthetic graphite production — leaving the rest of the process unchanged.</p>
+    </div>
+
+    <div class="fade-up d1">
+      <div class="process-flow" role="list">
+        <div class="flow-node" role="listitem">
+          <div class="flow-node__step">Step 1</div>
+          <div class="flow-node__name">Raw Material</div>
+        </div>
+        <div class="flow-node" role="listitem">
+          <div class="flow-node__step">Step 2</div>
+          <div class="flow-node__name">Milling &amp; Shaping</div>
+        </div>
+        <div class="flow-node" role="listitem">
+          <div class="flow-node__step">Step 3</div>
+          <div class="flow-node__name">Coating</div>
+        </div>
+        <div class="flow-node flow-node--active" role="listitem">
+          <div class="flow-node__step">Step 4 — Hexoris</div>
+          <div class="flow-node__name">Graphitization</div>
+        </div>
+        <div class="flow-node" role="listitem">
+          <div class="flow-node__step">Step 5</div>
+          <div class="flow-node__name">Particle Finishing</div>
+        </div>
+        <div class="flow-node" role="listitem">
+          <div class="flow-node__step">Step 6</div>
+          <div class="flow-node__name">Electrode Production</div>
+        </div>
+      </div>
+      <p style="font-size:0.875rem;color:var(--t3);margin-top:0.75rem;">Hexoris also expects to reduce the downstream particle finishing requirement, due to the higher temperatures achievable with continuous arc heating.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="grid-2">
+      <div class="fade-up">
+        <span class="label">How It Works</span>
+        <h2 class="mt-2">More Power, Less Time,<br>Less Total Energy</h2>
+        <p class="mt-3">Conventional graphitization slowly heats large batches over many hours using resistance furnaces. The Hexoris approach inverts this: higher instantaneous power delivered via electric arc heating, applied continuously to smaller quantities of material moving through the reactor.</p>
+        <p class="mt-3">Peak temperatures are higher, enabling full graphitization, while total energy consumed per kilogram is dramatically lower — because waste heat has far less time to escape.</p>
+
+        <div class="mt-6">
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-connector"></div>
+              <div class="step-num">01</div>
+              <div class="step-body">
+                <h4>Continuous Material Feed</h4>
+                <p>Precursor carbon particles feed continuously into the reactor rather than being loaded in large batch lots.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-connector"></div>
+              <div class="step-num">02</div>
+              <div class="step-body">
+                <h4>Electric Arc Heating Zone</h4>
+                <p>An electric arc concentrates intense thermal energy in a compact high-temperature zone, reaching extreme graphitization temperatures.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-connector"></div>
+              <div class="step-num">03</div>
+              <div class="step-body">
+                <h4>Rapid Graphitization</h4>
+                <p>Short, intense exposure to extreme heat causes carbon atoms to reorganize into graphitic structure in a fraction of the time required by batch methods.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">04</div>
+              <div class="step-body">
+                <h4>Continuous Output</h4>
+                <p>Processed graphite exits the reactor continuously, with no cooling and reload cycles.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up d2">
+        <div class="tech-diagram">
+          <img src="assets/images/reactor.png" alt="Hexoris Experimental Test Reactor" loading="lazy" />
+          <div class="tech-diagram__cap">Hexoris Experimental Test Reactor — Gate 1 Prototype</div>
+        </div>
+        <div class="tech-diagram mt-3">
+          <img src="assets/images/vials.png" alt="Synthesized graphite samples in vials" style="background:#f0f0f0;" loading="lazy" />
+          <div class="tech-diagram__cap">Synthesized Graphite Samples — Independent Third-Party Testing</div>
+        </div>
+
+        <!-- Energy comparison chart -->
+        <div class="energy-chart mt-3 fade-up d3">
+          <div class="energy-chart__title">Energy Consumption Comparison</div>
+          <div class="energy-bar">
+            <div class="energy-bar__header">
+              <span class="energy-bar__label">Conventional Technology</span>
+              <span class="energy-bar__value energy-bar__value--muted">High Energy Intensity</span>
+            </div>
+            <div class="energy-bar__track">
+              <div class="energy-bar__fill energy-bar__fill--gray" style="--bar-w:100%"></div>
+            </div>
+          </div>
+          <div class="energy-bar">
+            <div class="energy-bar__header">
+              <span class="energy-bar__label">Hexoris Platform (Target)</span>
+              <span class="energy-bar__value energy-bar__value--green">Substantially Lower</span>
+            </div>
+            <div class="energy-bar__track">
+              <div class="energy-bar__fill energy-bar__fill--green" style="--bar-w:35%"></div>
+            </div>
+          </div>
+          <p class="energy-note">Comparative target. Independent third-party validation currently in progress.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- VS COMPARISON -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Comparison</span>
+      <h2>Hexoris vs. Conventional Graphitization</h2>
+    </div>
+
+    <div class="vs-wrap fade-up d1">
+      <div class="vs-col vs-col--hexoris">
+        <div class="vs-head">Hexoris Platform</div>
+        <ul class="vs-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Continuous flow — no batch reload cycles
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Electric arc heating — extreme graphitization temperatures
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Compact thermal zone — low waste heat losses
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Targeting substantial energy reduction vs. conventional
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Smaller reactor footprint per tonne of output
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Reduced safety risk — no large batch handling
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Biomass precursor pathway in development
+          </li>
+        </ul>
+      </div>
+
+      <div class="vs-divider">VS</div>
+
+      <div class="vs-col vs-col--old">
+        <div class="vs-head">Conventional Technology</div>
+        <ul class="vs-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Large batch furnaces with long cycle times
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Resistance heating — lower operating temperatures
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Significant heat loss over long heating cycles
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Very high electricity consumption per tonne
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Large physical installations, high capex
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Robotic or manual batch loading required
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Petroleum-derived precursors only
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- APPLICATIONS -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Applications</span>
+      <h2>Beyond Battery Anodes</h2>
+      <p>Battery-grade anode material is our primary focus, but the Hexoris platform has potential across a range of high-temperature carbon processing needs.</p>
+    </div>
+
+    <div class="app-grid">
+      <div class="app-card fade-up d1">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <h4>EV Battery Anodes</h4>
+        <p>Battery-grade synthetic graphite for lithium-ion and next-generation battery chemistries. The vast majority of synthetic graphite demand is driven by EV batteries.</p>
+        <span class="pill">Primary Focus</span>
+      </div>
+      <div class="app-card fade-up d2">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9"/><path d="M3 13c0 4.97 4.03 9 9 9"/><path d="M12 2C6.48 2 2 6.48 2 12"/><path d="M22 12c0-5.52-4.48-10-10-10"/><path d="M8 12a4 4 0 0 0 8 0"/></svg>
+        </div>
+        <h4>Biomass-Derived Graphite</h4>
+        <p>The platform is being developed with a long-term pathway to process biomass-derived carbon precursors, enabling a lower-carbon input supply chain.</p>
+        <span class="pill">In Development</span>
+      </div>
+      <div class="app-card fade-up d3">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+        </div>
+        <h4>Specialty Carbons</h4>
+        <p>The fundamental IP may be applicable to adjacent high-temperature carbon processing verticals including graphene and fullerene precursors.</p>
+        <span class="pill">Future Exploration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- IP & ROADMAP -->
+<section class="section">
+  <div class="container">
+    <div class="ip-band fade-up">
+      <div>
+        <span class="label">Intellectual Property</span>
+        <h2 class="mt-2">Protecting What We're Building</h2>
+        <p class="mt-3">Hexoris is pursuing an IP licensing business model. A provisional patent covering core aspects of the graphitization platform is currently being filed. Our advisors include experts with decades of combined experience in IP strategy, tech transfer, and commercialization.</p>
+        <div class="mt-4">
+          <a href="contact.html" class="btn btn--outline">
+            Inquire About Licensing
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-connector"></div>
+            <div class="step-num" style="background:var(--green);color:#fff;border-color:var(--green);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="step-body">
+              <h4>Chemistry Validation</h4>
+              <p>Bench prototype built. Samples undergoing independent third-party testing at a leading battery materials lab.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-connector"></div>
+            <div class="step-num" style="background:var(--green);color:#fff;border-color:var(--green);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+            <div class="step-body">
+              <h4>Continuous Design <span style="color:var(--green);font-size:0.75rem;font-weight:600;">(Current)</span></h4>
+              <p>Designing, testing, and filing the core IP for the continuous reactor, which will be scaled to market.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num"></div>
+            <div class="step-body">
+              <h4>Scale-Up &amp; Licensing</h4>
+              <p>Scaling towards industrial demonstration and establishing IP licensing agreements with graphite or battery producers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="section--sm">
+  <div class="container">
+    <div class="cta-band fade-up">
+      <div class="cta-band__text">
+        <h2>Want to Know More?</h2>
+        <p class="mt-2">We're selective about who we share detailed technical information with. If you're a serious partner or investor, reach out.</p>
+      </div>
+      <a href="contact.html" class="btn btn--white">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/images/logo-horizontal.svg" alt="Hexoris" width="140" height="26" />
+        <p>Developing the next generation of graphitization technology for the EV battery supply chain.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="technology.html">Technology</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:info@hexoris.com">info@hexoris.com</a></li>
+          <li><span>Fredericton, NB, Canada</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Hexoris Inc. All rights reserved.</p>
+      <p>Fredericton, New Brunswick, Canada</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  // Animate energy bars on scroll
+  const fills = document.querySelectorAll('.energy-bar__fill');
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('animated');
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  fills.forEach(f => barObs.observe(f));
+</script>
+</body>
+</html>

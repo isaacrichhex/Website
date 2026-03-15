@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Hexoris — Next-Generation Graphitization Technology</title>
+  <meta name="description" content="Hexoris is developing a compact, continuous graphitization platform — enabling cleaner, lower-cost battery-grade synthetic graphite for the EV era." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://hexoris.com/" />
+  <meta property="og:title"       content="Hexoris — Next-Generation Graphitization Technology" />
+  <meta property="og:description" content="Compact, continuous graphitization platform enabling cleaner, lower-cost battery-grade synthetic graphite for the EV era." />
+  <meta property="og:image"       content="https://hexoris.com/assets/images/og-home.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ── Home page specific ── */
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .problem-cell {
+      background: var(--bg-card);
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r);
+      padding: 2rem 2.25rem 2.25rem;
+      box-shadow: var(--s1);
+      transition: border-color var(--t), transform var(--tmd), box-shadow var(--tmd);
+    }
+    .problem-cell:hover {
+      border-color: var(--green-border);
+      box-shadow: var(--s3);
+      transform: translateY(-3px);
+    }
+    .problem-cell h3 { margin-bottom: 0.75rem; }
+    .problem-cell p  { max-width: none; font-size: 0.9375rem; }
+
+    .build-visual {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--bd-lt);
+      box-shadow: var(--s3);
+    }
+    .build-visual img { width: 100%; display: block; }
+    .build-visual__cap {
+      padding: 0.7rem 1rem;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--bd-lt);
+      font-size: 0.69rem;
+      font-weight: 600;
+      color: var(--t3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .benefit-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r);
+      transition: border-color var(--t);
+    }
+    .benefit-item:hover { border-color: var(--green-border); }
+
+    .benefit-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .benefit-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--green); fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .benefit-text h4 { font-size: 0.9375rem; margin-bottom: 0.15rem; }
+    .benefit-text p  { font-size: 0.875rem; max-width: none; }
+
+    /* Validation strip */
+    .validation-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .v-item {
+      background: var(--bg-card);
+      border: 1px solid var(--bd-lt);
+      border-radius: var(--r);
+      padding: 1.75rem 1.5rem 1.75rem;
+      text-align: center;
+      box-shadow: var(--s1);
+      transition: border-color var(--t), box-shadow var(--tmd), transform var(--tmd);
+    }
+    .v-item:hover {
+      border-color: var(--green-border);
+      box-shadow: var(--s3);
+      transform: translateY(-3px);
+    }
+
+    .v-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--green-light);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .v-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--green); fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .v-status {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+    .v-status--done   { color: var(--green); }
+    .v-status--active { color: #c87800; }
+    .v-status--next   { color: var(--t3); }
+
+    .v-item h4 { font-size: 0.9375rem; margin-bottom: 0.4rem; }
+    .v-item p  { font-size: 0.8125rem; max-width: none; color: var(--t3); }
+
+    /* Team preview grid */
+    .team-preview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 960px) {
+      .problem-grid  { grid-template-columns: 1fr; }
+      .validation-grid { grid-template-columns: 1fr 1fr; }
+      .team-preview  { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .validation-grid { grid-template-columns: 1fr; }
+      .team-preview  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="Hexoris Home">
+      <img src="assets/images/logo-horizontal.svg" alt="Hexoris" width="160" height="28" />
+    </a>
+    <ul class="nav__links" id="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="contact.html" class="nav__cta">Contact Us</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-heading">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero__radial"      aria-hidden="true"></div>
+  <div class="hero__accent-line" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero__content">
+      <div class="hero__eyebrow">
+        <span class="label">Advanced Materials · Fredericton, NB</span>
+      </div>
+      <h1 id="hero-heading">
+        Redefining How<br>
+        <span class="highlight">Graphite</span><br>
+        Is Made
+      </h1>
+      <p class="hero__sub">
+        Hexoris is building a compact, continuous graphitization platform targeting a significant reduction in energy use — enabling cleaner, lower-cost battery-grade synthetic graphite for the EV era.
+      </p>
+      <div class="hero__actions">
+        <a href="technology.html" class="btn btn--primary">
+          Explore Our Technology
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="contact.html" class="btn btn--outline">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- STATS BAR -->
+<div class="stats-bar" role="region" aria-label="Key metrics">
+  <div class="stats-bar__inner container">
+    <div class="stats-bar__item">
+      <span class="stat__value">Gate 1</span>
+      <span class="stat__label">Prototype Built &amp; Tested</span>
+    </div>
+    <div class="stats-bar__item">
+      <span class="stat__value" data-target="10" data-prefix="$" data-suffix="B">$0B</span>
+      <span class="stat__label">Current Global Market</span>
+    </div>
+    <div class="stats-bar__item">
+      <span class="stat__value" data-target="40" data-prefix="$" data-suffix="B">$0B</span>
+      <span class="stat__label">Projected Market 2038</span>
+    </div>
+    <div class="stats-bar__item">
+      <span class="stat__value">90%</span>
+      <span class="stat__label">EV Battery Demand Share</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">The Problem</span>
+      <h2>Graphitization Is<br>Holding Batteries Back</h2>
+      <p>Synthetic graphite powers the anodes of virtually every lithium-ion EV battery. Making it requires graphitization — an energy-intensive heat treatment step that the industry has performed the same way for decades.</p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-cell fade-up d1">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Energy Intensive</h3>
+        <p>The graphitization step consumes enormous amounts of electricity per tonne of product — making it the single largest cost driver in the anode supply chain.</p>
+      </div>
+      <div class="problem-cell fade-up d2">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3>Large Footprint</h3>
+        <p>Conventional batch furnaces are massive, capital-intensive installations that are slow to commission and difficult to scale in pace with EV demand growth.</p>
+      </div>
+      <div class="problem-cell fade-up d3">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>High Emissions</h3>
+        <p>Each tonne of synthetic graphite produced by conventional methods generates substantial CO₂ equivalent emissions — a burden on the clean energy transition it is meant to enable.</p>
+      </div>
+      <div class="problem-cell fade-up d4">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h3>Demand Is Exploding</h3>
+        <p>Global demand for battery-grade synthetic graphite is projected to grow rapidly through 2038. New, more efficient production technology is urgently needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SOLUTION -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="grid-2">
+      <div class="fade-up">
+        <span class="label">Our Solution</span>
+        <h2 class="mt-2">A Better Way to<br>Make Graphite</h2>
+        <p class="mt-3">Hexoris is developing a compact, continuous high-temperature reactor platform. By rethinking the heating mechanism and process flow, we are targeting substantial reductions in energy use relative to existing technology — while also reducing reactor footprint and cycle time.</p>
+
+        <div class="benefit-list">
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="benefit-text">
+              <h4>Continuous Flow Design</h4>
+              <p>Eliminates batch cycle overhead, reducing manual handling and improving throughput and safety.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div class="benefit-text">
+              <h4>Electric Arc Heating</h4>
+              <p>Reaches extreme temperatures with dramatically less waste heat than conventional resistance furnaces.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <div class="benefit-text">
+              <h4>Compact Reactor Volume</h4>
+              <p>A smaller physical footprint per tonne of output lowers capex requirements for new facilities.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9"/><path d="M3 13c0 4.97 4.03 9 9 9"/><path d="M12 2C6.48 2 2 6.48 2 12"/><path d="M22 12c0-5.52-4.48-10-10-10"/></svg>
+            </div>
+            <div class="benefit-text">
+              <h4>Biomass Feed Pathway</h4>
+              <p>Being developed with a long-term pathway to process biomass-derived carbon precursors.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <a href="technology.html" class="btn btn--ghost">
+            Deep Dive into the Technology
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="fade-up d2">
+        <div class="build-visual">
+          <img src="assets/images/reactor.png" alt="Hexoris experimental test reactor" style="height:320px;object-fit:cover;" loading="lazy" />
+          <div class="build-visual__cap">Experimental Test Reactor · Gate 1 Prototype</div>
+        </div>
+        <div class="build-visual mt-3">
+          <img src="assets/images/vials.png" alt="Hexoris synthesized graphite samples" style="width:100%;background:#f0f0f0;" loading="lazy" />
+          <div class="build-visual__cap">Synthesized Graphite Samples · In Independent Third-Party Testing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- VALIDATION / TRACTION -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up text-center" style="max-width:600px;margin-left:auto;margin-right:auto;">
+      <span class="label" style="justify-content:center;">Traction</span>
+      <h2>We Build, Then We Test</h2>
+      <p style="margin:0 auto;">From concept to third-party validated samples — here is where Hexoris stands today.</p>
+    </div>
+
+    <div class="validation-grid">
+      <div class="v-item fade-up d1">
+        <div class="v-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span class="v-status v-status--done">Completed</span>
+        <h4>Bench Prototype</h4>
+        <p>Working prototype built and operating before any external pitch.</p>
+      </div>
+      <div class="v-item fade-up d2">
+        <div class="v-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span class="v-status v-status--done">Completed</span>
+        <h4>Chemistry Validated</h4>
+        <p>Synthesis confirmed — graphite produced from precursor carbon in the reactor.</p>
+      </div>
+      <div class="v-item fade-up d3">
+        <div class="v-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+        </div>
+        <span class="v-status v-status--active">In Progress</span>
+        <h4>Third-Party Testing</h4>
+        <p>Samples at an independent university battery materials lab undergoing rigorous third-party testing.</p>
+      </div>
+      <div class="v-item fade-up d4">
+        <div class="v-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <span class="v-status v-status--active">In Progress</span>
+        <h4>IP Filing</h4>
+        <p>Provisional patent covering core reactor aspects currently being filed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TEAM PREVIEW -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">The Team</span>
+      <h2>Founded by Engineers,<br>Built for Scale</h2>
+      <p>Chemical engineering students with real industrial and research experience in advanced materials, plasma reactors, and high-temperature process systems.</p>
+    </div>
+
+    <div class="team-preview fade-up d1">
+      <div class="team-card">
+        <img class="team-card__photo" src="assets/images/lance.jpg" alt="Lance Keddy, CEO &amp; Co-Founder" loading="lazy" />
+        <div class="team-card__body">
+          <div class="team-card__role">CEO &amp; Co-Founder</div>
+          <div class="team-card__name">Lance Keddy</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img class="team-card__photo" src="assets/images/isaac.jpg" alt="Isaac Richard, President &amp; CTO" loading="lazy" />
+        <div class="team-card__body">
+          <div class="team-card__role">President &amp; CTO · Co-Founder</div>
+          <div class="team-card__name">Isaac Richard</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img class="team-card__photo" src="assets/images/josh.jpg" alt="Josh Pothier, Process Director" loading="lazy" />
+        <div class="team-card__body">
+          <div class="team-card__role">Process Director · Co-Founder</div>
+          <div class="team-card__name">Josh Pothier</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img class="team-card__photo" src="assets/images/william.jpg" alt="William Wilcox, Environmental Compliance" loading="lazy" style="object-position:center 15%;" />
+        <div class="team-card__body">
+          <div class="team-card__role">Environmental Compliance · Co-Founder</div>
+          <div class="team-card__name">William Wilcox</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center fade-up d2">
+      <a href="team.html" class="btn btn--outline">Meet the Full Team &amp; Advisors</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="section--sm">
+  <div class="container">
+    <div class="cta-band fade-up">
+      <div class="cta-band__text">
+        <h2>Interested in What We're Building?</h2>
+        <p class="mt-2">Whether you're an investor, potential partner, or prospective collaborator — we'd like to hear from you.</p>
+      </div>
+      <a href="contact.html" class="btn btn--white">
+        Get in Touch
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/images/logo-horizontal.svg" alt="Hexoris" width="140" height="26" />
+        <p>Developing the next generation of graphitization technology for the EV battery supply chain.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="technology.html">Technology</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:info@hexoris.com">info@hexoris.com</a></li>
+          <li><span>Fredericton, NB, Canada</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Hexoris Inc. All rights reserved.</p>
+      <p>Fredericton, New Brunswick, Canada</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
