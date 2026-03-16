@@ -203,7 +203,7 @@ p {
 }
 
 .nav__logo img {
-  height: 38px;
+  height: 52px;
   width: auto;
 }
 
@@ -886,7 +886,7 @@ p {
 }
 
 .footer__brand img {
-  height: 26px;
+  height: 42px;
   width: auto;
   margin-bottom: 1.25rem;
   filter: brightness(0) invert(1);
