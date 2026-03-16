@@ -89,46 +89,58 @@
     }
 
     /* Values grid */
-    .values-grid {
+    .convictions {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .conviction-item {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: 88px 1fr;
+      gap: 3.5rem;
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--bd-lt);
+      align-items: start;
+    }
+    .conviction-item:last-child {
+      border-bottom: 1px solid var(--bd-lt);
     }
 
-    .value-item {
-      background: var(--bg-card);
-      border: 1px solid var(--bd-lt);
-      border-radius: var(--r);
-      padding: 2rem;
-      box-shadow: var(--s1);
-      transition: border-color var(--t), transform var(--tmd), box-shadow var(--tmd);
-    }
-    .value-item:hover {
-      border-color: var(--green-border);
-      transform: translateY(-3px);
-      box-shadow: var(--s3);
-    }
-
-    .value-num {
-      font-size: 0.68rem;
-      font-weight: 700;
+    .conviction-num {
+      font-size: 3.5rem;
+      font-weight: 800;
       color: var(--green);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.75rem;
-      display: block;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      padding-top: 0.2rem;
     }
 
-    .value-item h4 { margin-bottom: 0.5rem; }
-    .value-item p  { font-size: 0.9rem; max-width: none; }
+    .conviction-body h3 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .conviction-body p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--t2);
+      max-width: 700px;
+    }
 
     @media (max-width: 900px) {
       .founders-grid  { grid-template-columns: 1fr; }
       .support-grid   { grid-template-columns: 1fr; }
       .advisor-grid   { grid-template-columns: 1fr 1fr; }
-      .values-grid    { grid-template-columns: 1fr 1fr; }
+      .conviction-item { grid-template-columns: 60px 1fr; gap: 2rem; padding: 2.5rem 0; }
+      .conviction-num  { font-size: 2.5rem; }
     }
     @media (max-width: 600px) {
-      .values-grid    { grid-template-columns: 1fr; }
+      .conviction-item { grid-template-columns: 1fr; gap: 0.75rem; }
+      .conviction-num  { font-size: 2rem; }
     }
   </style>
 </head>
@@ -322,33 +334,32 @@
       <h2>Our Convictions</h2>
     </div>
 
-    <div class="values-grid">
-      <div class="value-item fade-up d1">
-        <div class="icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+    <div class="convictions">
+
+      <div class="conviction-item fade-up d1">
+        <div class="conviction-num">01</div>
+        <div class="conviction-body">
+          <h3>Science Over Narrative</h3>
+          <p>We hold ourselves to a standard that most early-stage companies avoid: demonstrate it first, then talk about it. Every claim we make has been earned through physical experimentation — prototypes built, materials produced, results sent to independent laboratories. We do not pitch projections as facts or treat a simulation as evidence. The culture of Hexoris is one where the experiment has the final word, and where that answer is welcomed regardless of whether it is convenient. If the data says we are wrong, we want to know. That discipline is what separates serious science from storytelling, and it is the only foundation we are willing to build on.</p>
         </div>
-        <span class="value-num">01</span>
-        <h4>Science Over Narrative</h4>
-        <p>We hold ourselves to a high technical standard. Claims get tested in hardware, results go to independent labs, and we say only what the evidence supports. Rigour is non-negotiable.</p>
       </div>
 
-      <div class="value-item fade-up d2">
-        <div class="icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="conviction-item fade-up d2">
+        <div class="conviction-num">02</div>
+        <div class="conviction-body">
+          <h3>Strategic Sovereignty Matters</h3>
+          <p>Advanced materials — synthetic graphite, silicon carbide, boron carbide — are not a supply chain consideration. They are a national security matter. The countries and alliances that control production of these inputs control the weapons, the power systems, and the industrial capacity of the next generation. Canada and its allies currently depend on foreign suppliers for materials that underpin their own defence and energy infrastructure. We take that seriously. Hexoris is not a political company, but we are a company that understands context. The technology we are building has direct relevance to domestic material sovereignty, and we intend to be a meaningful part of the answer to that challenge.</p>
         </div>
-        <span class="value-num">02</span>
-        <h4>Strategic Sovereignty</h4>
-        <p>Advanced materials are not a commodity problem — they are a national security problem. Canada and its allies cannot afford to depend on adversarial supply chains for materials critical to defence, energy, and industry. We intend to be part of the answer.</p>
       </div>
 
-      <div class="value-item fade-up d3">
-        <div class="icon-wrap">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <div class="conviction-item fade-up d3">
+        <div class="conviction-num">03</div>
+        <div class="conviction-body">
+          <h3>Born in Canada, Built for the World</h3>
+          <p>We are a company rooted in Atlantic Canada, and we are proud of that. The talent, the institutions, and the culture that shaped this team came from here. But we are not building for a regional market, and we are not satisfied with a regional ambition. The technology we are developing is designed to be licensed and deployed internationally — competing in global advanced materials markets on the strength of its merit. We believe that world-class deep technology can originate anywhere, and that the obligation of a company like ours is to build something significant enough to prove it. Hexoris starts here. It does not end here.</p>
         </div>
-        <span class="value-num">03</span>
-        <h4>Built Here, Scaled Globally</h4>
-        <p>Hexoris is rooted in Atlantic Canada, but our ambitions are not bounded by it. We are building IP and technology designed to license and deploy internationally — starting at home, competing everywhere.</p>
       </div>
+
     </div>
   </div>
 </section>
