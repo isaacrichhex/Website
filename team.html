@@ -33,8 +33,8 @@
     /* Advisor cards */
     .advisor-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.75rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
     }
 
     .advisor-card {
@@ -54,7 +54,7 @@
 
     .advisor-card__photo {
       width: 100%;
-      aspect-ratio: 4/3;
+      aspect-ratio: 1/1;
       object-fit: cover;
       object-position: center top;
       display: block;
@@ -62,7 +62,7 @@
     }
     .advisor-card:hover .advisor-card__photo { transform: scale(1.04); }
 
-    .advisor-card__body { padding: 1.5rem 1.75rem; }
+    .advisor-card__body { padding: 1rem 1.25rem 1.25rem; }
 
     .advisor-card__area {
       font-size: 0.68rem;
@@ -74,18 +74,18 @@
     }
 
     .advisor-card__name {
-      font-size: 1.175rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--t1);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       letter-spacing: -0.01em;
     }
 
     .advisor-card p {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       max-width: none;
       color: var(--t2);
-      line-height: 1.72;
+      line-height: 1.65;
     }
 
     /* Values grid */
@@ -124,7 +124,7 @@
     @media (max-width: 900px) {
       .founders-grid  { grid-template-columns: 1fr; }
       .support-grid   { grid-template-columns: 1fr; }
-      .advisor-grid   { grid-template-columns: 1fr; }
+      .advisor-grid   { grid-template-columns: 1fr 1fr; }
       .values-grid    { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
@@ -242,7 +242,7 @@
       </div>
 
       <div class="team-card">
-        <img class="team-card__photo" src="assets/images/william.jpg" alt="William Wilcox, Environmental Compliance" loading="lazy" style="object-position:center 15%;" />
+        <img class="team-card__photo" src="assets/images/william.png" alt="William Wilcox, Environmental Compliance" loading="lazy" style="object-position:center 15%;" />
         <div class="team-card__body">
           <div class="team-card__role">Environmental Compliance · Co-Founder</div>
           <div class="team-card__name">William Wilcox</div>
@@ -275,7 +275,7 @@
 
     <div class="advisor-grid">
       <div class="advisor-card fade-up d1">
-        <img class="advisor-card__photo" src="assets/images/felipe.jpg" alt="Dr. Felipe Chibante" loading="lazy" />
+        <img class="advisor-card__photo" src="assets/images/felipe.png" alt="Dr. Felipe Chibante" loading="lazy" style="object-position:center center;" />
         <div class="advisor-card__body">
           <div class="advisor-card__area">Technical</div>
           <div class="advisor-card__name">Dr. Felipe Chibante</div>
